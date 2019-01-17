@@ -1,10 +1,6 @@
-# fauria/vsftpd
+# 40three/vsftpd
 
-![docker_logo](https://raw.githubusercontent.com/fauria/docker-vsftpd/master/docker_139x115.png)![docker_fauria_logo](https://raw.githubusercontent.com/fauria/docker-vsftpd/master/docker_fauria_161x115.png)
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/fauria/vsftpd.svg?style=plastic)](https://hub.docker.com/r/fauria/vsftpd/)
-[![Docker Build Status](https://img.shields.io/docker/build/fauria/vsftpd.svg?style=plastic)](https://hub.docker.com/r/fauria/vsftpd/builds/)
-[![](https://images.microbadger.com/badges/image/fauria/vsftpd.svg)](https://microbadger.com/images/fauria/vsftpd "fauria/vsftpd")
+Cloned from [fauria/vsftpd](https://github.com/fauria/docker-vsftpd)
 
 This Docker container implements a vsftpd server, with the following features:
 
@@ -14,12 +10,12 @@ This Docker container implements a vsftpd server, with the following features:
  * Passive mode
  * Logging to a file or STDOUT.
 
-### Installation from [Docker registry hub](https://registry.hub.docker.com/u/fauria/vsftpd/).
+### Installation from [Docker registry hub](https://registry.hub.docker.com/u/40three/vsftpd/).
 
 You can download the image with the following command:
 
 ```bash
-docker pull fauria/vsftpd
+docker pull 40three/vsftpd
 ```
 
 Environment variables
@@ -48,13 +44,6 @@ This image uses environment variables to allow the configuration of some paramet
 
 ----
 
-* Variable name: `PASV_ADDRESS_RESOLVE`
-* Default value: YES
-* Accepted values: <NO|YES>
-* Description: Set to YES if you want to use a hostname (as opposed to IP address) in the `PASV_ADDRESS` option.
-
-----
-
 * Variable name: `PASV_ADDRESS`
 * Default value: Docker host IP / Hostname.
 * Accepted values: Any IPv4 address or Hostname (see PASV_ADDRESS_RESOLVE).
@@ -62,7 +51,7 @@ This image uses environment variables to allow the configuration of some paramet
 
 ----
 
-* Variable name: `PASV_ADDR_RESOLVE`
+* Variable name: `PASV_ADDRESS_RESOLVE`
 * Default value: NO.
 * Accepted values: YES or NO.
 * Description: Set to YES if you want to use a hostname (as opposed to IP address) in the PASV_ADDRESS option.
@@ -87,6 +76,13 @@ This image uses environment variables to allow the configuration of some paramet
 * Default value: 21110.
 * Accepted values: Any valid port number.
 * Description: This will be used as the upper bound of the passive mode port range. It will take longer to start a container with a high number of published ports.
+
+----
+
+* Variable name `PASV_PROMISCUOUS`
+* Default value: NO
+* Accepted values: YES or NO
+* Set to turn on promiscuous mode for passive ftp. WARNING: Security risk, do not turn on unless you understand its implications.
 
 ----
 
@@ -124,13 +120,13 @@ Use cases
 1) Create a temporary container for testing purposes:
 
 ```bash
-  docker run --rm fauria/vsftpd
+  docker run --rm 40three/vsftpd
 ```
 
 2) Create a container in active mode using the default user account, with a binded data directory:
 
 ```bash
-docker run -d -p 21:21 -v /my/data/directory:/home/vsftpd --name vsftpd fauria/vsftpd
+docker run -d -p 21:21 -v /my/data/directory:/home/vsftpd --name vsftpd 40three/vsftpd
 # see logs for credentials:
 docker logs vsftpd
 ```
@@ -142,7 +138,7 @@ docker run -d -v /my/data/directory:/home/vsftpd \
 -p 20:20 -p 21:21 -p 21100-21110:21100-21110 \
 -e FTP_USER=myuser -e FTP_PASS=mypass \
 -e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 \
---name vsftpd --restart=always fauria/vsftpd
+--name vsftpd --restart=always 40three/vsftpd
 ```
 
 4) Manually add a new FTP user to an existing container:

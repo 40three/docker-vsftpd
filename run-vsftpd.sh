@@ -33,6 +33,7 @@ echo "pasv_address=${PASV_ADDRESS}" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_max_port=${PASV_MAX_PORT}" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_min_port=${PASV_MIN_PORT}" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_addr_resolve=${PASV_ADDR_RESOLVE}" >> /etc/vsftpd/vsftpd.conf
+echo "pasv_promiscuous=${PASV_PROMISCUOUS}" >> /etc/vsftpd/vsftpd.conf
 echo "pasv_enable=${PASV_ENABLE}" >> /etc/vsftpd/vsftpd.conf
 echo "file_open_mode=${FILE_OPEN_MODE}" >> /etc/vsftpd/vsftpd.conf
 echo "local_umask=${LOCAL_UMASK}" >> /etc/vsftpd/vsftpd.conf
@@ -45,8 +46,8 @@ if [ ! $LOG_STDOUT ]; then
 cat << EOB
 	*************************************************
 	*                                               *
-	*    Docker image: fauria/vsftd                 *
-	*    https://github.com/fauria/docker-vsftpd    *
+	*    Docker image: 40three/vsftd                 *
+	*    https://github.com/40three/docker-vsftpd    *
 	*                                               *
 	*************************************************
 
